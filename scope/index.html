@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+    <!-- AngularJS -->
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+    <script type="text/javascript" src="../lib/angular-route.min.js"></script>
+
+<title>Service Example</title>
+
+    <script src="locationApp.js"></script>
+    <script src="locationsOneCtrl.js"></script>
+    <script src="locationsTwoCtrl.js"></script>
+</head>
+    <body ng-app="LocationApp">
+        <header>
+            <a href="../index.html">Home</a>
+            <a href="#/ControllerOne">One</a>
+            <a href="#/ControllerTwo">Two</a>
+        </header>
+        <h3 selectedlocation></h3>
+
+        <!-- Place where our view will be displayed -->
+        <div ng-view>
+        </div>
+    <h1>Communication Between Directives and Controllers</h1>
+        <p>This example uses a Service to manage the communication between three controllers.</p>
+        <p>The two location controllers list the locations so the user can select one.</p>
+        <p>The selected location is displayed using a directive with its own controller.</p>
+        <p>The selected location is stored in a service which broadcasts an event when the location is updated.</p>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Tutorial</title>
+
+    <!-- AngularJS -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+
+
+</head>
+<body>
+
+<div ng-controller="MyCtrl">
+    <h1>Hello {{world}}</h1>
+    <p ng-hide="hideIt == 'hide'">To hide this text, type hide.</p>
+    <p ng-show="hideIt == 'hide'">You typed: hide.</p>
+    <input type="text" ng-model="hideIt">
+    {{hideIt}}
+
+</div>
+
+<script>
+    var myApp = angular.module('myApp',[]);
+
+    myApp.controller('MyCtrl', ['$scope', function($scope) {
+        $scope.world = "World";
+    }]);
+</script>
+</body>
+</html>

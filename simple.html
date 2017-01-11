@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> JavaScript Angular</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js">
+
+        var myАpp = angular.module("myАpp", []);
+
+        myАpp.controller("firstController", function($scope){
+            $scope.test = "test-to-test";
+
+        });
+
+    </script>
+</head>
+<body ng-app = "myApp">
+    <div ng-controller = "firstController">
+        {{test}}
+    </div>
+
+</body>
+</html>
+

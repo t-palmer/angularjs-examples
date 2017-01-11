@@ -1,0 +1,31 @@
+<h3>Filter Based on Specific Field</h3>
+<div ng-controller="ShoeCtrl">
+
+    <p>This filter applies to only the name text in the row.</p>
+    <p>ng-repeat="shoe in shoes.inventory | filter:search.name"</p>
+    <input type="text" ng-model="search.name">
+    <table>
+        <tr ng-repeat="shoe in shoes.inventory | filter:search">
+            <td>{{shoe.name}}</td>
+            <td>{{shoe.brand}}</td>
+            <td>{{shoe.price | currency}}</td>
+        </tr>
+    </table>
+
+
+    <br/><br/>
+
+    <p>This shows how to filter on multiple specific fields.</p>
+    <p>ng-repeat="shoe in shoes.inventory | filter:brandSearch.brand |"</p>
+    Brand: <input type="text" ng-model="brandSearch.brand">
+    Name: <input type="text" ng-model="nameSearch.name">
+    <table>
+        <tr ng-repeat="shoe in shoes.inventory | filter:brandSearch |  filter:nameSearch">
+            <td>{{shoe.name}}</td>
+            <td>{{shoe.brand}}</td>
+            <td>{{shoe.price | currency}}</td>
+        </tr>
+    </table>
+
+</div>
+

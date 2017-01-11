@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+
+    <title>Tutorial: Simple Form</title>
+
+    <!-- AngularJS -->
+    <script type="text/javascript" src="lib/angular.min.js"></script>
+
+</head>
+<body ng-app="myApp">
+
+<h2>List Items</h2>
+<div ng-controller="MyCtrl as my">
+    <ul>
+        <li ng-repeat="person in my.people">
+            <span>{{person.name}}</span>
+            <span>{{person.age}}</span>
+        </li>
+    </ul>
+    <form ng-submit="my.addPerson()">
+        <input type="text" ng-model="my.newPerson.name" placeholder="type person's name">
+        <input type="number" ng-model="my.newPerson.age" placeholder="type age">
+        <input class="btn-primary" type="submit" value="add">
+    </form>
+</div>
+
+    <script>
+    // This code shows how to use the styles defined here:
+    // https://github.com/toddmotto/angularjs-styleguide
+    // https://github.com/johnpapa/angular-styleguide
+    // These style guides are meant for large projects with multiple files so they are overkill for an example like this.
+
+    // Style Y010
+    // Wrap Angular components in an Immediately Invoked Function Expression (IIFE).
+    (function () {
+
+        // Style Y023
+        // Only set once and get for all other instances.
+        angular
+            .module('myApp',[]);
+
+        // Style Y022
+        // When using a module, avoid using a variable and instead use chaining with the getter syntax.
+        angular
+            .module('myApp')
+            .controller('MyCtrl', MyCtrl);
+
+        // Style Y024
+        // Use named functions instead of passing an anonymous function in as a callback.
+        function MyCtrl () {
+            // Style Y032
+            // Use a capture variable for this when using the controllerAs syntax. Choose a consistent variable name such as vm, which stands for ViewModel.
+            var vm = this;
+
+            ////////////////////////////////////////////////
+            // THIS IS THE HEADER AREA WHERE WE DEFINE THE INTERFACE
+
+            // Style Y033
+            // Place bindable members at the top of the controller, alphabetized, and not spread through the controller code.
+            vm.newPerson={};
+            vm.people=[];
+            // Style Y034
+            // Use function declarations to hide implementation details. Keep your bindable members up top. When you need to bind a function in a controller, point it to a function declaration that appears later in the file. This is tied directly to the section Bindable Members Up Top.
+            // Notice that addPerson can be used outside the controller on the view.
+            vm.addPerson= addPerson;
+            // NOTE: activate is not listed here or added to vm as it shouldn't be invoked from outside the controller.
+
+            ////////////////////////////////////////////////
+            // IMPLEMENTATION CODE STARTS HERE
+
+            function addPerson() {
+                console.log("addPerson",vm.newPerson);
+                vm.people.push({name: vm.newPerson.name, age: vm.newPerson.age});
+                vm.newPerson = {};
+            }
+
+            // TODD: I would recommend we always use an activate() method to contain any initalization code for controllers.
+            activate();
+            function activate() {
+                vm.people = [
+                    {name: 'John', age: 31},
+                    {name: 'Alice', age: 24}
+                ];
+            }
+        }
+    })();
+
+    </script>
+</body>
+</html>

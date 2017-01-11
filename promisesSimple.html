@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Tutorial: Promises</title>
+
+    <!-- AngularJS -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+
+
+</head>
+<body>
+
+<div ng-controller="SampleCtrl">
+    <h1>Promises</h1>
+    <p>This shows examples of creating promises. Thanks to https://lostechies.com/gabrielschenker/2014/02/04/angularjspart-11-promises/</p>
+    <div style="border:solid 1px black">
+        <button ng-click="test()">Click me</button><br/>
+        <input type="checkbox" ng-model="fail"/>
+    </div>
+
+</div>
+
+<script>
+    var myApp = angular.module('myApp',[]);
+
+    myApp.controller('SampleCtrl', ['$scope','$q', function($scope,$q) {
+        $scope.fail = false;
+        $scope.test = function () {
+            var deferred = $q.defer();
+
+            // This is the eventual result of the deferred.
+            var promise = deferred.promise;
+
+            // This code defines what to do when the promise is resolved.
+            // This code runs only after the promise is resolved.
+            promise.then(
+                function(result){
+                    alert("Success: "+result);
+                },
+                function(reason){
+                    alert("Error: "+reason);
+                }
+            );
+
+            // Now we are finally doing something with the deferred.
+            // This is the code that runs to resolve the promise.
+            if ($scope.fail){
+                deferred.reject('sorry')
+            }
+            else{
+                deferred.resolve('cool')
+            }
+        } 
+
+    }]);
+</script>
+</body>
+</html>

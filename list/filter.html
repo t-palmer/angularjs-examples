@@ -1,0 +1,13 @@
+<h3>Filter all text</h3>
+<p>This filter applies to all text in the row.</p>
+<p>ng-repeat="shoe in shoes.inventory | filter:searchText"</p>
+<div ng-controller="ShoeCtrl">
+    <input type="text" ng-model="searchText">
+    <table>
+        <tr ng-repeat="shoe in shoes.inventory | filter:searchText">
+            <td>{{shoe.name}}</td>
+            <td>{{shoe.brand}}</td>
+            <td>{{shoe.price | currency}}</td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,20 @@
+<h3>Sorting From Select</h3>
+<p>Sort by picking the field from the select.</p>
+
+<div ng-controller="ShoeCtrl">
+    <select ng-model="selectedField"
+            ng-options="field as field.label for field in shoes.fieldOptions">
+    </select>
+
+    <p></p>
+    <div>
+        <table>
+            <tr ng-repeat="shoe in shoes.inventory | orderBy:selectedField.value">
+                <td>{{shoe.name}}</td>
+                <td>{{shoe.brand}}</td>
+                <td>{{shoe.price | currency}}</td>
+            </tr>
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+    <!-- AngularJS -->
+    <script type="text/javascript" src="lib/angular.min.js"></script>
+
+<title>Directive Callbacks</title>
+
+
+</head>
+<body ng-app="myApp" ng-controller="Controller">
+
+	<h1>Directive with Callback Example</h1>
+    <h3>Open the console in your web browser.</h3>
+
+    <clicker new-value="clickersValue" my-update="clickersCallback()"></clicker>
+    <p>
+        Clicker's value is the initialized value when the callback is invoked: <strong> {{clickersValueRightAfterCall}}</strong>
+    </p>
+    <p>
+        But eventually it becomes: <strong> {{clickersValue}}</strong>
+    </p>
+
+    <script>
+        var app=angular.module('myApp',[]);
+
+        app.controller('Controller',
+            ['$scope',
+                function($scope) {
+                    // initialize the value to something obvious
+                    $scope.clickersValue= "BEFORE";
+
+                    // when this call back is called we would expect the value to be updated by updated by the directive
+                    $scope.clickersCallback= function(){
+//                        $scope.$apply(); // $apply is not allowed here
+                        $scope.clickersValueRightAfterCall= $scope.clickersValue;
+                        console.log("clickersCallback: scope.clickersValue",$scope.clickersValue);
+                    };
+                }
+            ]
+        );
+
+        app.directive('clicker',[function() {
+            return {
+                restrict: 'EA',
+                template: '<div ng-click="clicked()">click me!</div>',
+                controller: ['$scope','$timeout', function ($scope,$timeout) {
+                    $scope.clicked= function(){
+                        console.log("you clicked me.");
+                        $scope.newValue='VALID';
+                        $timeout(function() {
+                            $scope.myUpdate();
+                        });
+                    }
+                }],
+                scope: {
+                    "newValue": "=",
+                    "myUpdate" : "&"
+                }
+            };
+        }]);
+
+    </script>
+</body>
+</html>

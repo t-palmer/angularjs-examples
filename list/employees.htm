@@ -1,0 +1,17 @@
+<h3>Large List</h3>
+<p>This example shows the performance of AngularJS on a large list of over 2200 entries.</p>
+<div ng-controller="EmployeeCtrl">
+
+Filter: <input type="text" ng-model="searchText">
+Sort by:    <select ng-model="selectedField"
+            ng-options="field as field.label for field in fieldOptions">
+    </select>
+
+<table>
+<tr ng-repeat="person in people | orderBy:selectedField.value | filter:searchText">
+   <td>{{person.first}}</td>
+   <td>{{person.last}}</td>
+   <td>{{person.email}}</td>
+   </tr>
+</table>
+</div>

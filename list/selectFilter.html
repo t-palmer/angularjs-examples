@@ -1,0 +1,21 @@
+<h3>Filter all with select</h3>
+<p>Filter from select box based on the brand.</p>
+<p>Note how in the controller we add 'All' to the list of brands for the select box.</p>
+
+<div ng-controller="ShoeCtrl">
+    <select ng-model="selectedBrand"
+    ng-options="brand for brand in shoes.brandOptions">
+    </select>
+
+    <p></p>
+    <div>
+        <table>
+            <tr ng-repeat="shoe in shoes.inventory | filter: (selectedBrand=='All' ? '' : selectedBrand)">
+                <td>{{shoe.name}}</td>
+                <td>{{shoe.brand}}</td>
+                <td>{{shoe.price | currency}}</td>
+            </tr>
+        </table>
+    </div>
+
+</div>

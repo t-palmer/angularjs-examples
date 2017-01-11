@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+    <!-- AngularJS -->
+    <script type="text/javascript" src="lib/angular.min.js"></script>
+
+<title>Custom Directives</title>
+
+
+</head>
+<body ng-app="myApp">
+
+
+	
+	<h1>Custom Directive Example</h1>
+    <h3>Open the console in your web browser.</h3>
+	<some-text></some-text>
+	<div hello-log></div>
+    <script>
+    var app=angular.module('myApp',[]);
+
+    app.directive('someText',[function() {
+    	return {
+    		restrict: 'E',
+    		template: "<blockquote>Element directive.</blockquote>"
+    	};
+    }]);
+
+    app.directive('helloLog',[function() {
+    	return function(){
+    		console.log("Attribute directive");
+    	};
+    }]);
+    </script>
+    
+
+</body>
+</html>

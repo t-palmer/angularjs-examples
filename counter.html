@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <!-- AngularJS -->
+    <script type="text/javascript" src="lib/angular.min.js"></script>
+    <!-- $interval is in angular-mocks.js -->
+    <script type="text/javascript" src="lib/angular-mocks.js"></script>
+
+    <title>Counter</title>
+
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="MyCtrl">
+    <h1>Counter Example</h1>
+    <p>This example uses the $interval module to implement a counter that calls a function every second.</p>
+    <h3>{{seconds}} seconds passed.</h3>
+</div>
+
+<script>
+    var myApp = angular.module('myApp',[]);
+    // Notice that both modules need to be in 2 places.
+    myApp.controller('MyCtrl', ['$scope','$interval', function($scope, $interval) {
+        $scope.seconds = 0;
+        $interval(function(){$scope.seconds++;},1000);
+    }]);
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<h2>{{title}}</h2>
+<ul>
+    <li ng-repeat="location in locationData">
+        <a href ng-click="selectLocation(location)">
+            <span>{{location.id}}: </span>
+            <span>{{location.city}}, </span>
+            <span>{{location.state}}</span>
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+    <!-- AngularJS -->
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+    <script type="text/javascript" src="../lib/angular-route.min.js"></script>
+
+<title>Routes Example</title>
+
+        <script src="app.js"></script>
+        <script src="hello.js"></script>
+        <script src="about.js"></script>
+</head>
+    <body ng-app="routingApp">
+        <header>
+            <a href="../index.html">Home</a>
+            <a href="#/hello">Hello</a>
+            <a href="#/about">About</a>
+        </header>
+        <!-- Place where our view will be displayed -->
+        <div ng-view>
+        </div>
+    </body>
+</html>

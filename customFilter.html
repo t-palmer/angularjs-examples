@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+
+<script>
+    var myApp = angular.module('myApp',[]);
+
+    myApp.filter('articlesBySubjects', function () {
+        return function (articles, subjects) {
+            var filtered = articles.filter(
+                function(article){
+                    // parse through subjects and find a matching subject in the article.
+                    var found= subjects.find(
+                        function (filterSubject) {
+                            return article.subjects.find(
+                                function(articleSubject){
+                                    return (filterSubject.idSubject==articleSubject.idSubject);
+                                }
+                            )
+                        }
+                    );
+                    return found;
+                }
+            );
+            return filtered;
+        };
+    });
+
+    myApp.controller('ArticlesController', ['$scope', function($scope) {
+        $scope.searchArticles = [
+            {"idArticle":8, "subjects":[{"idSubject":4},{"idSubject":5},{"idSubject":6}]},
+            {"idArticle":9, "subjects":[{"idSubject":2},{"idSubject":3},{"idSubject":4}]},
+            {"idArticle":10, "subjects":[{"idSubject":1},{"idSubject":2},{"idSubject":3}]}
+        ];
+        $scope.filterSubjects = [
+            {"idSubject":2},{"idSubject":3}
+        ];
+
+    }]);
+
+</script>
+
+<div ng-controller="ArticlesController">
+    <p ng-repeat="searchArticle in searchArticles | articlesBySubjects:filterSubjects">{{searchArticle.idArticle}}</p>
+
+</div>
+
+</body>
+</html>

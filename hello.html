@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Tutorial</title>
+
+    <!-- AngularJS -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+
+
+</head>
+<body>
+
+<div ng-controller="MyCtrl">
+    <h1>Hello {{world}}</h1>
+    <p>Use this page as a template for creating new examples.</p>
+
+</div>
+
+<script>
+    var myApp = angular.module('myApp',[]);
+
+    myApp.controller('MyCtrl', ['$scope', function($scope) {
+        $scope.world = "World";
+    }]);
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <!-- AngularJS -->
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+    <script type="text/javascript" src="../lib/angular-route.min.js"></script>
+
+    <title>Tutorial Sorting and Filtering</title>
+
+</head>
+<body ng-app="ListApp">
+    <header>
+        <h1>Lists and Tables with Sorting and Filtering</h1>
+        <ul>
+            <li><a href="../index.html">Home</a></a></li>
+            <li><a href="#/Filter">Filter</a></li>
+            <li><a href="#/NameFilter">Filter on a field</a></li>
+            <li><a href="#/BrandFilter">Filter brand from select box</a></li>
+            <li><a href="#/Sort">Sort by name</a></li>
+            <li><a href="#/FieldSort">Choose sort field from select box</a></li>
+            <li><a href="#/Large">Large list sorting and filtering</a></li>
+        </ul>
+    </header>
+
+    <div ng-view> </div>
+
+    <script  type="text/javascript"  src="listApp.js"></script>
+    <script  type="text/javascript"  src="employees.js"></script>
+
+</body>
+</html>

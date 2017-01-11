@@ -1,0 +1,13 @@
+<h3>Sorting by Name</h3>
+<p>This list is sorted by the shoe name.</p>
+<p>Note the predicate must be enclosed in single quotes: 'name' .</p>
+<p>ng-repeat="shoe in shoes.inventory | orderBy:'name'"</p>
+<div ng-controller="ShoeCtrl">
+    <table>
+        <tr ng-repeat="shoe in shoes.inventory | orderBy:'name'">
+            <td>{{shoe.name}}</td>
+            <td>{{shoe.brand}}</td>
+            <td>{{shoe.price | currency}}</td>
+        </tr>
+    </table>
+</div>

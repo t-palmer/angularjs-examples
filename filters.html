@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+    <!-- AngularJS -->
+    <script type="text/javascript" src="lib/angular.min.js"></script>
+
+<title>Tutorial: Filters</title>
+
+</head>
+<body ng-app="myApp" ng-init="someText=''">
+	<h1>Filters</h1>
+
+    <label>Text for filter:</label>
+    <input type="text" ng-model="someText" placeholder="Enter text here">
+        <h3>No filter:</h3>
+        <p>{{someText}}</p>
+    <hr>
+    <h3>Standard UPPERCASE filter:</h3>
+        <p>{{someText|uppercase}}</p>
+    <hr>
+    <h3>Custom reverse filter:</h3>
+        <p>{{someText|reverse}}</p>
+
+    <script>
+	    var myApp = angular.module('myApp',[]);
+
+        myApp.filter('reverse',[function(){
+            return function(text){
+                return text.split("").reverse().join("");
+            }
+        }]);
+
+	</script>
+</body>
+</html>
